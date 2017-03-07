@@ -15,15 +15,11 @@ struct patient
 };
 
 
-void main(int argc, char *argv[])
+void main(int argc,char *argv[])
 {
 	FILE *ptr;
-	ptr = fopen("C:\\Users\\sndri\\Documents\\log.txt", "a");
+	ptr = fopen("log.txt", "a");
 	struct patient patients;
-	char *date;
-	char *time;
-	date = __DATE__;
-	time = __TIME__;
 	patients.patientID = atof(argv[1]);
 	patients.temperature = atof(argv[2]);
 	patients.pulseRate = atof(argv[3]);
@@ -32,12 +28,13 @@ void main(int argc, char *argv[])
 	patients.bldDiastolic = atof(argv[6]);
 
 	fprintf(ptr, "%s\t%s\t%d\t%.2lf\t%d\t%d\t%d\t%d\n",
-		date,
-		time,
+		__DATE__,
+		__TIME__,
 		patients.patientID, 
 		patients.temperature,
 		patients.pulseRate,
 		patients.respRate,
 		patients.bldSystolic,
 		patients.bldDiastolic);
+	fclose(ptr);
 }
